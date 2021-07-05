@@ -5,12 +5,16 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.OrangeTalents.zupMercadoLivre.validacao.UniqueValue;
+
+
 
 
 public class UsuarioRequest {
 
 	@NotBlank
 	@Email
+	@UniqueValue(domainClass = Usuario.class, fieldName = "login")
 	private String login;
 	
 	@NotBlank
