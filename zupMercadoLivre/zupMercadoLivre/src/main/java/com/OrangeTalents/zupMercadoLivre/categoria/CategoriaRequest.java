@@ -4,12 +4,18 @@ import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 
 
+import com.OrangeTalents.zupMercadoLivre.validacao.ExistsId;
+import com.OrangeTalents.zupMercadoLivre.validacao.UniqueValue;
+
+
 
 public class CategoriaRequest {
 
 	@NotBlank
+	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 	
+	@ExistsId(domainClass = Categoria.class,fieldName = "id")
 	private Long idCategoriaMae;
 	
 	
