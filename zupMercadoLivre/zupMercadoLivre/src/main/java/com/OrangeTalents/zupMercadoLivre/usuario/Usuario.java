@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class Usuario {
@@ -42,7 +42,7 @@ public class Usuario {
 			) {
 		super();
 		this.login = login;
-		this.senha = new BCryptPasswordEncoder().encode(senha);
+		this.senha = senha;
 	
 	}
 	
