@@ -1,4 +1,4 @@
-package com.OrangeTalents.zupMercadoLivre.security;
+/*package com.OrangeTalents.zupMercadoLivre.security;
 
 
 import java.util.Date;
@@ -17,16 +17,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenService {
-	@Value("${forum.jwt.expiration}")
-	private String expiration;
+	@Value("${jwt.expiration}")
+	private Long expirationInMillis;
 	
-	@Value("${forum.jwt.secret}")
+	@Value("${jwt.secret}")
 	private String secret;
 
 	public String gerarToken(Authentication authentication) {
 		Usuario logado = (Usuario) authentication.getPrincipal();
 		Date hoje = new Date();
-		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
+		Date dataExpiracao = new Date(hoje.getTime() + this.expirationInMillis);
 		
 		return Jwts.builder()
 				.setIssuer("API do mercado livre")
@@ -51,4 +51,4 @@ public class TokenService {
 		return Long.parseLong(claims.getSubject());
 	}
 
-}
+}*/

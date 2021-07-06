@@ -1,4 +1,4 @@
-package com.OrangeTalents.zupMercadoLivre.security;
+/*package com.OrangeTalents.zupMercadoLivre.security;
 
 
 import java.util.Optional;
@@ -24,11 +24,11 @@ public class AutenticacaoService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuario> usuario = repository.findByEmail(username);
+		Optional<Usuario> usuario = repository.findByLogin(username);
 		if (usuario.isPresent()) {
 			return usuario.get();
 		}
 		
 		throw new UsernameNotFoundException("Dados inválidos!");
 	}
-}
+}*/

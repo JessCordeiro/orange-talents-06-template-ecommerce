@@ -1,4 +1,4 @@
-package com.OrangeTalents.zupMercadoLivre.security;
+/*package com.OrangeTalents.zupMercadoLivre.security;
 
 
 import javax.validation.Valid;
@@ -9,11 +9,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.OrangeTalents.zupMercadoLivre.security.TokenService;
+import com.OrangeTalents.zupMercadoLivre.security.TokenDto;
+import com.OrangeTalents.zupMercadoLivre.security.LoginDto;
 
 
 
@@ -41,4 +44,4 @@ public class AutenticacaoController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-}
+}*/

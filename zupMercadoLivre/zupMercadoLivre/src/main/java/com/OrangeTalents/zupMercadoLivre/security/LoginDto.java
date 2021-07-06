@@ -1,4 +1,4 @@
-package com.OrangeTalents.zupMercadoLivre.security;
+/*package com.OrangeTalents.zupMercadoLivre.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -24,4 +24,4 @@ public class LoginDto {
 	}
 	
 	
-}
+}*/
