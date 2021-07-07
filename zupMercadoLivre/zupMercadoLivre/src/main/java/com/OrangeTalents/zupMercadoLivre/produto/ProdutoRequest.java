@@ -43,9 +43,7 @@ public class ProdutoRequest {
 	@ManyToOne
 	private Long idCategoria;
 	
-	@ManyToOne
-	@NotNull
-	private Long idUsuario;
+	
 	
 	@Valid
 	@Size(min=3)
@@ -61,7 +59,7 @@ public class ProdutoRequest {
 
 	public ProdutoRequest(@NotBlank String nome, @NotNull @Positive BigDecimal valor,
 			@NotNull @Positive Integer quantidade,
-			@NotBlank @Size(max = 1000) String descricao, @NotBlank Long idCategoria, Long idUsuario,
+			@NotBlank @Size(max = 1000) String descricao, @NotBlank Long idCategoria, 
 			@Valid List<CaracteristicaRequest> caracteristicas) {
 		super();
 		this.nome = nome;
@@ -69,7 +67,6 @@ public class ProdutoRequest {
 		this.quantidade = quantidade;
 		this.descricao = descricao;
 		this.idCategoria = idCategoria;
-		this.idUsuario = idUsuario;
 		this.caracteristicas.addAll(caracteristicas);
 	}
 
@@ -106,10 +103,6 @@ public class ProdutoRequest {
 
 
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
 
 
 
@@ -121,11 +114,11 @@ public class ProdutoRequest {
 	
 
 
-	public Produto toModel(EntityManager em) {
+	public Produto toModel(EntityManager em, Usuario usuario) {
 		
 		
 		Categoria categoria = em.find(Categoria.class, idCategoria);
-		Usuario usuario = em.find(Usuario.class, idUsuario);
+		
 		 return new Produto(this.nome, this.valor, this.quantidade, this.descricao, categoria, usuario,caracteristicas);
 	 }
 	

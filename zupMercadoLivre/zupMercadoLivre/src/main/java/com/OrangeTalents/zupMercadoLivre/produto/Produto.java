@@ -64,6 +64,9 @@ public class Produto {
 	@Size(min=3)
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
+	
 	@Deprecated
 	public Produto() {
 		
@@ -136,9 +139,26 @@ public class Produto {
 	public Set<CaracteristicaProduto> getCaracteristicas() {
 		return this.caracteristicas;
 	}
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
 
+	public LocalDateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public Set<ImagemProduto> getImagens() {
+		return imagens;
+	}
 	
-	
+
+	public void setImagens(Set<ImagemProduto> imagens) {
+		this.imagens = imagens;
+	}
+
 	public <T> Set<T> mapeiaCaracteristicas(Function<CaracteristicaProduto, T> funcaoMapeadora){
 		return this.caracteristicas.stream()
 				.map(funcaoMapeadora)
@@ -146,10 +166,25 @@ public class Produto {
 	}
 
 	
-
+	public void associarImagens(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream()
+				.map(link -> new ImagemProduto(this, link))
+				.collect(Collectors.toSet());
+		
+		this.imagens.addAll(imagens);
+	}
 	
 	
-
+	public <T> Set <T> mapeiaImagens(Function<ImagemProduto, T> funcaoMapeadora){
+		return this.imagens.stream()
+				.map(funcaoMapeadora)
+				.collect(Collectors.toSet());
+	}
+	
+	
+	public boolean pertenceAoUsuario(Usuario usuarioCerto) {
+		return this.usuario.equals(usuarioCerto);
+	}
 	
 
 
