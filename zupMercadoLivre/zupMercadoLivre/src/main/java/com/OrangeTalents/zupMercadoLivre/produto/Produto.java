@@ -22,6 +22,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.OrangeTalents.zupMercadoLivre.categoria.Categoria;
+import com.OrangeTalents.zupMercadoLivre.opiniao.Opiniao;
 import com.OrangeTalents.zupMercadoLivre.usuario.Usuario;
 
 
@@ -66,6 +67,9 @@ public class Produto {
 	
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<ImagemProduto> imagens = new HashSet<>();
+	
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<Opiniao> opinioes = new HashSet<>();
 	
 	@Deprecated
 	public Produto() {
@@ -157,6 +161,12 @@ public class Produto {
 
 	public void setImagens(Set<ImagemProduto> imagens) {
 		this.imagens = imagens;
+	}
+	
+	
+
+	public Set<Opiniao> getOpinioes() {
+		return opinioes;
 	}
 
 	public <T> Set<T> mapeiaCaracteristicas(Function<CaracteristicaProduto, T> funcaoMapeadora){
