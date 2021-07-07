@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,6 +26,7 @@ import javax.validation.constraints.Size;
 
 import com.OrangeTalents.zupMercadoLivre.categoria.Categoria;
 import com.OrangeTalents.zupMercadoLivre.opiniao.Opiniao;
+import com.OrangeTalents.zupMercadoLivre.pergunta.Pergunta;
 import com.OrangeTalents.zupMercadoLivre.usuario.Usuario;
 
 
@@ -71,6 +75,8 @@ public class Produto {
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<Opiniao> opinioes = new HashSet<>();
 	
+	@OneToMany(mappedBy= "produto")@OrderBy("titulo asc")
+	private SortedSet<Pergunta> perguntas = new TreeSet<>();	
 	@Deprecated
 	public Produto() {
 		
@@ -167,6 +173,12 @@ public class Produto {
 
 	public Set<Opiniao> getOpinioes() {
 		return opinioes;
+	}
+	
+	
+
+	public SortedSet<Pergunta> getPerguntas() {
+		return perguntas;
 	}
 
 	public <T> Set<T> mapeiaCaracteristicas(Function<CaracteristicaProduto, T> funcaoMapeadora){
