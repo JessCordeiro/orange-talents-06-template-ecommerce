@@ -175,6 +175,11 @@ public class Produto {
 		return opinioes;
 	}
 	
+	//aqui
+	public Produto(Set<Opiniao> opinioes) {
+		this.opinioes = opinioes;
+	}
+	
 	
 
 	public SortedSet<Pergunta> getPerguntas() {
@@ -206,6 +211,11 @@ public class Produto {
 	
 	public boolean pertenceAoUsuario(Usuario usuarioCerto) {
 		return this.usuario.equals(usuarioCerto);
+	}
+	
+	public <T extends Comparable<T>> SortedSet<T> mapearPerguntas(Function<Pergunta, T> funcaoMapeadora){
+		return this.perguntas.stream().map(funcaoMapeadora)
+				.collect(Collectors.toCollection(TreeSet ::new));
 	}
 	
 
