@@ -28,7 +28,7 @@ import com.OrangeTalents.zupMercadoLivre.categoria.Categoria;
 import com.OrangeTalents.zupMercadoLivre.opiniao.Opiniao;
 import com.OrangeTalents.zupMercadoLivre.pergunta.Pergunta;
 import com.OrangeTalents.zupMercadoLivre.usuario.Usuario;
-
+import org.springframework.util.Assert;
 
 
 @Entity
@@ -216,6 +216,17 @@ public class Produto {
 	public <T extends Comparable<T>> SortedSet<T> mapearPerguntas(Function<Pergunta, T> funcaoMapeadora){
 		return this.perguntas.stream().map(funcaoMapeadora)
 				.collect(Collectors.toCollection(TreeSet ::new));
+	}
+
+	public boolean abataEstoque(@Positive int quantidade) {
+		Assert.isTrue(quantidade > 0, "A quantidade deve ser maior que zero para abater o estoque "+quantidade);
+		
+		if(quantidade <= this.quantidade) {
+			this.quantidade-=quantidade;
+			return true;
+			
+		}
+		return false;
 	}
 	
 
